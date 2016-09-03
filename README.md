@@ -1,14 +1,11 @@
-# kubernetes-lb
-kubernetes-lb
-
 Kubernetes Cluster on AWS
 KIrk Kalvar
 9/2/2016
 
-# Provision
+# provision k8s-console 
 Amazon Linux AMI 2016.03.3 (HVM), SSD Volume Type - ami-6869aa05, Free tier eligible t2.micro, Free tier eligible which has awscli tools pre-installed
 
-# Login into Amazon Linux AMI using ssh and configure awscli 
+# login into k8s-console  using ssh and configure awscli 
 aws configure
 AWS Access Key ID [****************SSKA]:
 AWS Secret Access Key [****************IOxz]:
@@ -79,4 +76,3 @@ kubectl delete deployment,service web
 
 # shutdown cluster
 kubernetes/cluster/kube-down.sh
-
