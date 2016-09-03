@@ -33,9 +33,6 @@ sudo docker run hello-world
 # add git
 sudo yum install -y git
 
-
-
-
 # Dockerfile and kubernetes fixes
 git clone https://github.com/kskalvar/kubernetes-lb.git
 
