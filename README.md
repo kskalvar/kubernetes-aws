@@ -1,5 +1,5 @@
 Kubernetes Cluster on AWS
-KIrk Kalvar
+Kirk Kalvar
 9/2/2016
 
 # provision k8s-console 
@@ -7,10 +7,15 @@ Amazon Linux AMI 2016.03.3 (HVM), SSD Volume Type - ami-6869aa05, Free tier elig
 
 # login into k8s-console  using ssh and configure awscli 
 aws configure
+
 AWS Access Key ID [****************SSKA]:
+
 AWS Secret Access Key [****************IOxz]:
+
 Default region name [us-east-1]:
+
 Default output format [None]:
+
 
 # set kubernetes environment variables
 export NUM_NODES=2
