@@ -1,4 +1,4 @@
-Kubernetes Cluster on AWS
+Kubernetes AWS Quickstart
 Kirk Kalvar
 9/2/2016
 
