@@ -1,2 +1,2 @@
-# kubernetes-lb
-kubernetes-lb
+# kubernetes-aws
+kubernetes-aws
