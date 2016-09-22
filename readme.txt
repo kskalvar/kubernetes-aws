@@ -25,7 +25,7 @@ sudo docker run hello-world
 sudo yum install -y git vim
 
 # Dockerfile and kubernetes fixes
-git clone https://github.com/kskalvar/kubernetes-lb.git
+git clone https://github.com/kskalvar/kubernetes-aws.git
 
 # install kubernetes v1.3.6 
 curl -sS https://get.k8s.io | sed '$d' | bash
