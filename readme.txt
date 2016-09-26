@@ -36,7 +36,7 @@ cp kubernetes-aws/scripts/config-test.sh kubernetes/cluster/aws/config-test.sh
 cp kubernetes-aws/scripts/config-default.sh kubernetes/cluster/aws/config-default.sh
 
 # set kubernetes environment variables
-export NUM_NODES=2
+export NUM_NODES=3
 export KUBE_AWS_INSTANCE_PREFIX=k8s
 export KUBE_AWS_ZONE=us-east-1a
 export MASTER_SIZE=t2.micro
