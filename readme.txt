@@ -31,9 +31,9 @@ git clone https://github.com/kskalvar/kubernetes-aws.git
 curl -sS https://get.k8s.io | sed '$d' | bash
  
 # correct scripts
-cp kubernetes-lb/scripts/common.sh kubernetes/cluster/common.sh
-cp kubernetes-lb/scripts/config-test.sh kubernetes/cluster/aws/config-test.sh
-cp kubernetes-lb/scripts/config-default.sh kubernetes/cluster/aws/config-default.sh
+cp kubernetes-aws/scripts/common.sh kubernetes/cluster/common.sh
+cp kubernetes-aws/scripts/config-test.sh kubernetes/cluster/aws/config-test.sh
+cp kubernetes-aws/scripts/config-default.sh kubernetes/cluster/aws/config-default.sh
 
 # test kubernetes
 export PATH=/home/ec2-user/kubernetes/platforms/linux/amd64:$PATH
