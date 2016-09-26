@@ -52,7 +52,7 @@ export PATH=/home/ec2-user/kubernetes/platforms/linux/amd64:$PATH
 kubectl get nodes
 
 # create container
-cd kubernetes-lb/web
+cd kubernetes-aws/web
 sudo docker build -t kskalvar/web  .
 sudo docker login
 sudo docker push kskalvar/web
