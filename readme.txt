@@ -35,11 +35,6 @@ cp kubernetes-aws/scripts/common.sh kubernetes/cluster/common.sh
 cp kubernetes-aws/scripts/config-test.sh kubernetes/cluster/aws/config-test.sh
 cp kubernetes-aws/scripts/config-default.sh kubernetes/cluster/aws/config-default.sh
 
-# test kubernetes
-export PATH=/home/ec2-user/kubernetes/platforms/linux/amd64:$PATH
-kubectl get nodes
-
-
 # set kubernetes environment variables
 export NUM_NODES=2
 export KUBE_AWS_INSTANCE_PREFIX=k8s
@@ -51,6 +46,10 @@ export KUBERNETES_PROVIDER=aws
 
 # start cluster (takes about 10 minutes)
 kubernetes/cluster/kube-up.sh
+
+# test kubernetes
+export PATH=/home/ec2-user/kubernetes/platforms/linux/amd64:$PATH
+kubectl get nodes
 
 # create container
 cd kubernetes-lb/web
