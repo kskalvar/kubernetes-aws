@@ -55,11 +55,11 @@ sudo docker push kskalvar/web
 # create pod
 kubectl run web --image=kskalvar/web --port=5000
 
-# show pods running
-kubectl get pods --output wide
-
 # scale pod
 kubectl scale deployment web --replicas=2
+
+# show pods running
+kubectl get pods --output wide
 
 # create load balancer
 kubectl expose deployment web --port=80 --target-port=5000 --type="LoadBalancer"
