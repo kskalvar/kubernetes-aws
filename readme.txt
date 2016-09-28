@@ -27,7 +27,7 @@ sudo yum install -y git vim
 # Dockerfile and kubernetes fixes
 git clone https://github.com/kskalvar/kubernetes-aws.git
 
-# install kubernetes v1.3.6 
+# install kubernetes v1.4.0
 curl -sS https://get.k8s.io | sed '$d' | bash
  
 # set kubernetes environment variables
