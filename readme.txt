@@ -22,7 +22,7 @@ sudo docker images
 sudo docker run hello-world
 
 # add git
-sudo yum install -y git vim
+sudo yum install -y git
 
 # Dockerfile and kubernetes fixes
 git clone https://github.com/kskalvar/kubernetes-aws.git
