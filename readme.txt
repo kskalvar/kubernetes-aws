@@ -65,7 +65,7 @@ kubectl get pods --output wide
 kubectl expose deployment web --port=80 --target-port=5000 --type="LoadBalancer"
 
 # get aws external load balancer external address
-kubectl get --output wide service web
+kubectl get service web --output wide
 
 # test from browser
 
