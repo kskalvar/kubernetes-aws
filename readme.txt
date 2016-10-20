@@ -3,7 +3,8 @@ Kirk Kalvar
 Updated 10/20/2016
 
 # provision amazon-linux-ami 
-Amazon Linux AMI 2016.03.3 (HVM), SSD Volume Type - ami-6869aa05, Free tier eligible t2.micro, Free tier eligible which has the awscli tools pre-installed
+Amazon Linux AMI 2016.03.3 (HVM), SSD Volume Type - ami-6869aa05, Free tier eligible t2.micro,
+Free tier eligible which has the awscli tools pre-installed
 
 # login into amazon-linux-ami using ssh and configure aws client tools
 aws configure
