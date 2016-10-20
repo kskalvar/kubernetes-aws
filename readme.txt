@@ -1,8 +1,8 @@
 Kubernetes Cluster on AWS
 Kirk Kalvar
-Updated 9/20/2016
+Updated 10/20/2016
 
-# provision k8s-console 
+# provision amazon-linux-ami 
 Amazon Linux AMI 2016.03.3 (HVM), SSD Volume Type - ami-6869aa05, Free tier eligible t2.micro, Free tier eligible which has the awscli tools pre-installed
 
 # login into k8s-console  using ssh and configure awscli 
