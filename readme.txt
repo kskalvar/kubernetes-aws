@@ -5,7 +5,7 @@ Updated 10/20/2016
 # provision amazon-linux-ami 
 Amazon Linux AMI 2016.03.3 (HVM), SSD Volume Type - ami-6869aa05, Free tier eligible t2.micro, Free tier eligible which has the awscli tools pre-installed
 
-# login into k8s-console  using ssh and configure awscli 
+# login into amazon-linux-ami using ssh and configure aws client tools
 aws configure
 AWS Access Key ID [****************SSKA]:
 AWS Secret Access Key [****************IOxz]:
@@ -46,6 +46,8 @@ kubectl get nodes
 # create container
 cd kubernetes-aws/web
 sudo docker build -t kskalvar/web  .
+
+# login to docker hub and push container
 sudo docker login
 sudo docker push kskalvar/web
 
