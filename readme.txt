@@ -21,9 +21,6 @@ sudo usermod -a -G docker ec2-user
 sudo docker images
 sudo docker run hello-world
 
-# add git
-sudo yum install -y git
-
 # Dockerfile and kubernetes fixes
 git clone https://github.com/kskalvar/kubernetes-aws.git
 
