@@ -1,4 +1,5 @@
 # kubernetes-aws
 kubernetes-aws
 
-Docker and Kubernetes on AWS-QuickStart
+Docker and Kubernetes on AWS QuickStart
+
