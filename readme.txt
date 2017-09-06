@@ -26,6 +26,10 @@ sudo docker run hello-world
 git clone https://github.com/kskalvar/kubernetes-aws.git
 
 # install kubernetes v1.4.3
+export KUBERNETES_RELEASE=v1.4.3
+export KUBERNETES_PROVIDER=aws
+export KUBERNETES_SKIP_CONFIRM=true
+
 curl -sS https://get.k8s.io | sed '$d' | bash
  
 # set kubernetes environment variables
