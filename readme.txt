@@ -1,6 +1,6 @@
 Kubernetes Cluster on AWS
 Kirk Kalvar
-Updated 10/20/2016
+Updated 09/05/2017
 
 # provision amazon-linux-ami 
 Amazon Linux AMI 2016.03.3 (HVM), SSD Volume Type - ami-6869aa05, Free tier eligible t2.micro,

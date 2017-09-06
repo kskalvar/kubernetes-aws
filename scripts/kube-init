@@ -1,38 +1,35 @@
-#cloud-config
+#!/bin/sh
 
-write_files:
-  - content: |
-        #!/bin/sh
-        DEBIAN_FRONTEND=noninteractive sudo apt-get -qqy update || sudo yum update -qy
-        DEBIAN_FRONTEND=noninteractive sudo apt-get install -qqy git || sudo yum install -qy git
-        DEBIAN_FRONTEND=noninteractive sudo apt-get install -qqy docker || sudo yum install -qy docker
+# add docker 
+yum install -y docker
+service docker start
+usermod -a -G docker ec2-user
 
-        # add docker 
-        service docker start
-        usermod -a -G docker ec2-user
-       
-        # environment 
-        cd /home/ec2-user
-        echo "export PATH=/home/ec2-user/kubernetes/platforms/linux/amd64:$PATH" >> .bashrc
+# add git
+yum install -y git
 
-        echo "export NUM_NODES=3" >> .bashrc
-        echo "export KUBE_AWS_INSTANCE_PREFIX=k8s" >> .bashrc
-        echo "export KUBE_AWS_ZONE=us-east-1a" >> .bashrc
-        echo "export MASTER_SIZE=t2.micro" >> .bashrc
-        echo "export AWS_S3_REGION=us-east-1" >> .bashrc
-        echo "export NODE_SIZE=t2.micro" >> .bashrc
-        echo "export KUBERNETES_PROVIDER=aws" >> .bashrc
-        
-        # Dockerfile
-        git clone https://github.com/kskalvar/kubernetes-aws.git
-        chown -R ec2-user:ec2-user kubernetes-aws
-        
-        # install kubernetes v1.4.0
-        curl -sS https://get.k8s.io | sed '$d' | bash
-        chown -R ec2-user:ec2-user kubernetes
+# environment 
+cd /home/ec2-user
+echo "export PATH=/home/ec2-user/kubernetes/platforms/linux/amd64:$PATH" >> .bashrc
 
-    path: /tmp/start.sh
-    permissions: 0755
+echo "export NUM_NODES=3" >> .bashrc
+echo "export KUBE_AWS_INSTANCE_PREFIX=k8s" >> .bashrc
+echo "export KUBE_AWS_ZONE=us-east-1a" >> .bashrc
+echo "export MASTER_SIZE=t2.micro" >> .bashrc
+echo "export AWS_S3_REGION=us-east-1" >> .bashrc
+echo "export NODE_SIZE=t2.micro" >> .bashrc
+echo "export KUBERNETES_PROVIDER=aws" >> .bashrc
 
-runcmd:
-  - /tmp/start.sh
+# get dockerfile repo
+cd /home/ec2-user
+git clone https://github.com/kskalvar/kubernetes-aws.git
+chown -R ec2-user:ec2-user kubernetes-aws
+
+# install kubernetes v1.4.3
+cd /home/ec2-user
+export KUBERNETES_RELEASE=v1.4.3
+export KUBERNETES_PROVIDER=aws
+export KUBERNETES_SKIP_CONFIRM=true
+
+curl -sS https://get.k8s.io | sed '$d' | bash
+chown -R ec2-user:ec2-user kubernetes
