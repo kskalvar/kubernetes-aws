@@ -19,8 +19,8 @@ sudo service docker start
 sudo usermod -a -G docker ec2-user
 
 # test docker
-sudo docker images
-sudo docker run hello-world
+docker images
+docker run hello-world
 
 # Dockerfile and kubernetes fixes
 git clone https://github.com/kskalvar/kubernetes-aws.git
