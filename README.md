@@ -1,15 +1,16 @@
 # kubernetes-aws
-kubernetes-aws
 
-Kubernetes on AWS QuickStart
+# Kubernetes on AWS QuickStart
 
 docs/  
-   Kubernetes-on-AWS-QuickStart-Abstract.docx    
-   Kubernetes-on-AWS-QuickStart.pptx  
+* Kubernetes-on-AWS-QuickStart-Abstract.docx    
+* Kubernetes-on-AWS-QuickStart.pptx  
+
 scripts/  
-   kube-init  
+* kube-init  
+
 web/  
-   files/  
-      app.py  
-      requirements.txt  
-   Dockerfile  
+* files/  
+  * app.py  
+  * requirements.txt  
+* Dockerfile  
