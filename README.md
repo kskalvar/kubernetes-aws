@@ -1,5 +1,7 @@
 # kubernetes-aws
 
+readme.txt
+
 docs/  
 * Kubernetes-on-AWS-QuickStart-Abstract.docx    
 * Kubernetes-on-AWS-QuickStart.pptx  
