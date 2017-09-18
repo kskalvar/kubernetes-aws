@@ -50,11 +50,11 @@ kubectl get nodes
 
 # create container
 cd kubernetes-aws/web
-sudo docker build -t kskalvar/web  .
+docker build -t kskalvar/web  .
 
 # login to docker hub and push container
-sudo docker login
-sudo docker push kskalvar/web
+docker login
+docker push kskalvar/web
 
 # create pod
 kubectl run web --image=kskalvar/web --port=5000
