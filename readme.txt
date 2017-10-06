@@ -1,6 +1,6 @@
 Kubernetes Cluster on AWS
 Kirk Kalvar
-Updated 09/05/2017
+Updated 09/27/2017
 
 # provision amazon-linux-ami 
 Amazon Linux AMI 2016.03.3 (HVM), SSD Volume Type - ami-6869aa05, Free tier eligible t2.micro,
@@ -18,35 +18,59 @@ sudo yum install -y docker git
 sudo service docker start
 sudo usermod -a -G docker ec2-user
 
-# test docker
+# test docker (you may need to logout/login)
 docker images
 docker run hello-world
 
-# Dockerfile and kubernetes fixes
+# get Dockerfile
 git clone https://github.com/kskalvar/kubernetes-aws.git
 
-# install kubernetes v1.4.3
-export KUBERNETES_RELEASE=v1.4.3
+# install kubernetes v1.7.6
+export KUBERNETES_RELEASE=v1.7.6
 export KUBERNETES_PROVIDER=aws
 export KUBERNETES_SKIP_CONFIRM=true
 
 curl -sS https://get.k8s.io | sed '$d' | bash
- 
-# set kubernetes environment variables
-export NUM_NODES=3
-export KUBE_AWS_INSTANCE_PREFIX=k8s
-export KUBE_AWS_ZONE=us-east-1a
-export MASTER_SIZE=t2.micro
-export AWS_S3_REGION=us-east-1
-export NODE_SIZE=t2.micro
-export KUBERNETES_PROVIDER=aws
 
-# start cluster (takes about 10 minutes)
-kubernetes/cluster/kube-up.sh
-
-# test kubernetes
+# test kubectl
 export PATH=/home/ec2-user/kubernetes/platforms/linux/amd64:$PATH
-kubectl get nodes
+kubectl
+
+# install kops v1.7.0
+wget http://github.com/kubernetes/kops/releases/download/1.7.0/kops-linux-amd64
+chmod +x kops-linux-amd64
+sudo mv kops-linux-amd64 /usr/local/bin/kops
+
+# test kops
+export PATH=/usr/local/bin:$PATH
+kops
+
+# generate public/private rsa key pair
+ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+
+# cleanup
+rm -f kubernetes.tar.gz
+
+# create route53 subdomain
+aws route53 create-hosted-zone --name dev.kal.technology --caller-reference {1,2,3 ... n: where n is different everytime}
+
+# Add subdomain NS record to domain (please see kubernetes installation instructions)
+
+# test route53 (should see 4 NS records if working correctly in ANSWER SECTION)
+dig NS dev.kal.technology
+
+# add aws s3 storage
+aws s3 mb s3://kube.dev.kal.technology
+export KOPS_STATE_STORE=s3://kube.dev.kal.technology
+
+# configure cluster
+kops create cluster --zones=us-east-1a ksk.useast1.kube.dev.kal.technology
+
+# create cluster
+kops update cluster ksk.useast1a.kube.dev.kal.technology --yes
+
+# validate cluster
+kops validate cluster
 
 # create container
 cd kubernetes-aws/web
@@ -77,4 +101,4 @@ kubectl get service web --output wide
 kubectl delete deployment,service web
 
 # shutdown cluster
-kubernetes/cluster/kube-down.sh
+kops delete cluster ksk.useast1a.kube.dev.kal.technology --yes

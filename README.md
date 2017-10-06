@@ -7,7 +7,7 @@ docs/
 * Kubernetes-on-AWS-QuickStart.pptx  
 
 scripts/  
-* kube-init  
+* kube-v1.7.5-init  
 
 web/  
 * files/  

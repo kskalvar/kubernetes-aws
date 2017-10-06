@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# add docker 
+yum install -y docker
+service docker start
+usermod -a -G docker ec2-user
+
+# add git
+yum install -y git
+
+# environment 
+cd /home/ec2-user
+echo "export PATH=/usr/local/bin:/home/ec2-user/kubernetes/platforms/linux/amd64:$PATH" >> .bashrc
+
+# get my dockerfile
+cd /home/ec2-user
+git clone https://github.com/kskalvar/kubernetes-aws.git
+chown -R ec2-user:ec2-user kubernetes-aws
+
+# install kubernetes v1.7.6
+cd /home/ec2-user
+export KUBERNETES_RELEASE=v1.7.6
+export KUBERNETES_PROVIDER=aws
+export KUBERNETES_SKIP_CONFIRM=true
+
+curl -sS https://get.k8s.io | sed '$d' | bash
+chown -R ec2-user:ec2-user kubernetes
+
+# install kops v1.7.0
+cd /home/ec2-user
+wget http://github.com/kubernetes/kops/releases/download/1.7.0/kops-linux-amd64
+chmod +x kops-linux-amd64
+mv kops-linux-amd64 /usr/local/bin/kops
+
+# generate public/private rsa key pair
+cd /home/ec2-user
+runuser -l ec2-user -c 'ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa'
+
+# cleanup
+cd /home/ec2-user
+rm -f kubernetes.tar.gz
+
+echo "finished" > /tmp/kube-v1.7.6-init.log 
